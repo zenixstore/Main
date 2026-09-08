@@ -239,10 +239,11 @@
       .container{width:min(calc(100% - 24px),var(--max))}
       header{position:relative}.nav{min-height:62px}
       .navlinks,.search{display:none}.mobile-menu{display:block;margin-left:auto}
-      .hero{min-height:600px}.hero-inner{min-height:600px;display:block;padding-top:60px}
+      .hero{min-height:700px}.hero-inner{min-height:700px;display:block;padding-top:60px}
       .hero h1{font-size:42px;letter-spacing:-1.8px}
       .hero p{font-size:15px}
-      .hero-art{width:100%;height:270px;bottom:10px;opacity:.5}
+      /* Hạ cụm hình minh họa xuống để không che nút Khám phá ngay trên điện thoại */
+      .hero-art{width:100%;height:270px;bottom:-90px;opacity:.5}
       .console{width:390px;height:120px}.tile{width:83px;height:90px;font-size:10px}.tile b{font-size:27px}
       .tile:nth-child(1){left:3%;top:15px}.tile:nth-child(2){left:30%;top:0}.tile:nth-child(3){right:18%;top:8px}.tile:nth-child(4){right:-2%;top:70px}
       .trust-grid{grid-template-columns:1fr 1fr}.trust-item{padding:10px;border-right:0}
@@ -253,7 +254,7 @@
       .footer-grid{grid-template-columns:1fr 1fr}.footer-grid>div:first-child{grid-column:1/-1}
     }
     @media(max-width:440px){
-      .hero h1{font-size:35px}.hero{min-height:570px}.hero-inner{min-height:570px}
+      .hero h1{font-size:35px}.hero{min-height:700px}.hero-inner{min-height:700px}
       .products{grid-template-columns:1fr}.categories{grid-template-columns:1fr}
       .trust-item{gap:9px}.trust-icon{width:40px;height:40px;font-size:18px}.trust-item strong{font-size:11px}.trust-item small{font-size:9px}
       .footer-grid{grid-template-columns:1fr 1fr}
@@ -362,6 +363,21 @@
 </section>
 
 <main>
+  <div class="container">
+    <div class="layout">
+      <div>
+        <div class="section-head"><h2 class="section-title">Danh mục sản phẩm</h2><a class="see-all" href="#products">Xem tất cả →</a></div>
+        <div class="categories">
+          <a class="cat" href="#products">
+            <div class="ico">⚙</div><h3>Dịch vụ MMO</h3>
+            <p>Seeding, tăng view, tăng tương tác...</p><span class="arrow">→</span>
+          </a>
+          <a class="cat" href="#products">
+            <div class="ico">⌘</div><h3>Tool / Phần mềm</h3>
+            <p>Tool, phần mềm bản quyền, tiện ích...</p><span class="arrow">→</span>
+          </a>
+        </div>
+
         <div id="products" style="height:25px"></div>
         <div class="section-head" style="margin-top:4px"><h2 class="section-title">🔥 Sản phẩm nổi bật</h2><a class="see-all" href="sanpham.html">Xem tất cả →</a></div>
         <div class="products" id="productGrid">
@@ -511,8 +527,15 @@
     const code = productCode + '-' + randomCode;
     const targetUrl = 'https://dqmmo.github.io/autobanking/?amount=' + encodeURIComponent(amount) + '&code=' + encodeURIComponent(code);
 
+    // Mở autobanking ở tab mới, giữ trang DQ MMO hiện tại ở tab đang mở.
+    const paymentWindow = window.open(targetUrl, '_blank', 'noopener,noreferrer');
+
     closePayment();
-    window.location.href = targetUrl;
+
+    // Nếu trình duyệt chặn popup/tab mới, báo cho người dùng.
+    if(!paymentWindow){
+      toast('Trình duyệt đã chặn tab mới. Hãy cho phép cửa sổ bật lên để tiếp tục.');
+    }
   }
   function contact(){ toast('Khu vực chat hỗ trợ đã sẵn sàng. Hãy kết nối với kênh hỗ trợ của bạn.'); }
 
