@@ -51,6 +51,27 @@
       letter-spacing:-1px;
     }
 
+    .home-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      margin-left:auto;
+      padding:9px 14px;
+      border:1px solid #5d1717;
+      border-radius:10px;
+      background:#151010;
+      color:#ff4a4a;
+      font-size:12px;
+      font-weight:800;
+      transition:.2s;
+      white-space:nowrap;
+    }
+    .home-btn:hover{
+      background:#241010;
+      border-color:#ff3030;
+      transform:translateY(-1px);
+    }
+
     .result-count{
       display:inline-flex;
       align-items:center;
@@ -221,7 +242,8 @@
   <main class="page">
     <div class="page-title">
       <h1>Tất cả sản phẩm</h1>
-      <span class="result-count">Kết quả tìm thấy</span>
+      <span class="result-count">1231 kết quả</span>
+      <a class="home-btn" href="main.html" aria-label="Quay về trang chủ">⌂ Trang chủ</a>
     </div>
 
     <section class="products" aria-label="Tất cả sản phẩm">
@@ -237,8 +259,8 @@
           </div>
         </div>
         <div class="price-row">
-          <div><span class="price">40.000đ/Vĩnh viễn</span><span class="old">80.000đ/Vĩnh viễn</span></div>
-          <button class="buy" onclick="buy('Locket Gold 15s','40.000đ','Vĩnh viễn')" aria-label="Mua Locket Gold 15s">🛍</button>
+          <div><span class="price">99.000đ</span><span class="old">149.000đ</span></div>
+          <button class="buy" onclick="buy('Locket Gold 15s','99.000đ','Vĩnh viễn')" aria-label="Mua Locket Gold 15s">🛍</button>
         </div>
         <div class="rating-row"><span class="rating">★ 4.9 (1.1k)</span><span class="stock">Còn hàng</span></div>
       </article>
@@ -255,8 +277,8 @@
           </div>
         </div>
         <div class="price-row">
-          <div><span class="price">40.000đ/1 Year</span><span class="old">150.000đ/1 Year</span></div>
-          <button class="buy" onclick="buy('Canva Pro','40.000đ','1 Year')" aria-label="Mua Canva Pro">🛍</button>
+          <div><span class="price">129.000đ</span><span class="old">249.000đ</span></div>
+          <button class="buy" onclick="buy('Canva Pro','129.000đ','1 Year')" aria-label="Mua Canva Pro">🛍</button>
         </div>
         <div class="rating-row"><span class="rating">★ 4.9 (982)</span><span class="stock">Còn hàng</span></div>
       </article>
@@ -380,7 +402,7 @@
     const productCode = makeProductCode(product);
     const randomCode = generateRandomCode(6);
     const code = productCode + '-' + randomCode;
-    const targetUrl = 'https://dqmmo.github.io/autobanking?amount=' + encodeURIComponent(amount) + '&code=' + encodeURIComponent(code);
+    const targetUrl = 'https://dqmmo.github.io/autobanking/?amount=' + encodeURIComponent(amount) + '&code=' + encodeURIComponent(code);
 
     // Mở trang autobanking ở tab mới (_blank), sau đó đổi popup xác nhận
     // thành popup thông báo đang xử lý trên trang DQ MMO hiện tại.
